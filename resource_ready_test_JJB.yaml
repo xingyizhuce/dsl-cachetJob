@@ -1,0 +1,26 @@
+- job-template:
+    name: 'resource_ready_test_rong'
+    node: linchpin
+    properties:
+      - raw:
+          xml: |
+            <com.redhat.jenkins.plugins.cachet.CachetJobProperty plugin="cachet-gating@1.0.5">
+              <requiredResources>true</requiredResources>
+              <resources>
+                <string>beaker</string>
+                <string>beaker-blr</string>
+                <string>beaker-bos</string>
+                <string>beaker-nay</string>
+              </resources>
+            </com.redhat.jenkins.plugins.cachet.CachetJobProperty>
+
+
+- job-group:
+    name: resource_ready_test_rong_Group
+    jobs:
+      - 'resource_ready_test_rong'
+
+- project:
+    name: resource_ready_test_rong_Project
+    jobs:
+      - 'resource_ready_test_rong_Group'
